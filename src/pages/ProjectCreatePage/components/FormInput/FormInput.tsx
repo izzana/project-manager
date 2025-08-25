@@ -1,4 +1,3 @@
-import styled, { css } from "styled-components";
 import { ErrorMessage, StyledInput, StyledLabel, Wrapper } from "./FormInput.styles";
 
 interface FormInputProps {
