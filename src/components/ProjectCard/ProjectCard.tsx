@@ -22,6 +22,7 @@ import {
   StyledValue,
   StyledKebabIcon,
 } from "./ProjectCard.styles";
+import { DeleteProjectModal } from "../DeleteProjectModal/DeleteProjectModal";
 
 export type ProjectCardProps = {
   id: string;
@@ -51,6 +52,7 @@ export function ProjectCard({
   onRemove,
 }: ProjectCardProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const formatDate = useMemo(() => {
     const fmt = (iso: string) =>
@@ -64,6 +66,11 @@ export function ProjectCard({
 
   function handleCardClick() {
     if (!menuOpen) onOpen?.(id);
+  }
+
+  function handleDelete() {
+    setOpenDeleteModal(false);
+    onRemove?.(id);
   }
 
   return (
@@ -125,7 +132,7 @@ export function ProjectCard({
                   role="menuitem"
                   onClick={() => {
                     setMenuOpen(false);
-                    onRemove?.(id);
+                    setOpenDeleteModal(true);
                   }}
                 >
                   <StyledTrashIcon viewBox="0 0 24 24">
@@ -163,6 +170,12 @@ export function ProjectCard({
           {formatDate.end}
         </StyledRow>
       </StyledBody>
+      <DeleteProjectModal
+        isOpen={openDeleteModal}
+        onClose={() => setOpenDeleteModal(false)}
+        onConfirm={handleDelete}
+        projectName={name}
+      />
     </StyledCard>
   );
 }
