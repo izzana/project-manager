@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { http, HttpResponse, delay } from "msw";
 
 export type Project = {
@@ -23,26 +24,62 @@ function saveProjects(projects: Project[]) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
 }
 
-// -------- Utils de validação/ordenação --------
+// -------- Utils de validação e ordenação --------
 function isISODate(value?: string) {
   return !!value && !isNaN(Date.parse(value));
 }
+
 function hasTwoWords(value: string) {
   return value.trim().split(/\s+/).length >= 2;
 }
+
 function hasAtLeastOneWord(value: string) {
   return value.trim().length > 0;
 }
-function sortProjects(list: Project[], order: string | null) {
+
+function toTimestampISO(dateString?: string): number {
+  if (!dateString) return Number.NaN;
+
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(dateString);
+  if (!match) return Number.NaN;
+
+  const [_, year, month, day] = match;
+  return Date.UTC(Number(year), Number(month) - 1, Number(day));
+}
+
+function compareByName(projectA: Project, projectB: Project) {
+  return projectA.name.localeCompare(projectB.name);
+}
+
+function sortProjects(projectList: Project[], order: string | null) {
   switch (order) {
     case "started_desc":
-      return [...list].sort((a, b) =>
-        (b.startDate ?? b.createdAt).localeCompare(a.startDate ?? a.createdAt)
-      );
+      // Iniciados mais recentemente
+      return [...projectList].sort((projectA, projectB) => {
+        const timestampA = toTimestampISO(projectA.startDate);
+        const timestampB = toTimestampISO(projectB.startDate);
+
+        if (Number.isNaN(timestampB) && Number.isNaN(timestampA)) return compareByName(projectA, projectB);
+        if (Number.isNaN(timestampB)) return 1;   // sem data -> fim
+        if (Number.isNaN(timestampA)) return -1;
+
+        const difference = timestampA - timestampB; // ASC
+        return difference !== 0 ? difference : compareByName(projectA, projectB);
+      });
     case "due_asc":
-      return [...list].sort((a, b) => a.endDate.localeCompare(b.endDate));
+      return [...projectList].sort((projectA, projectB) => {
+        const timestampA = toTimestampISO(projectA.endDate);
+        const timestampB = toTimestampISO(projectB.endDate);
+
+        if (Number.isNaN(timestampB) && Number.isNaN(timestampA)) return compareByName(projectA, projectB);
+        if (Number.isNaN(timestampA)) return 1;   // sem prazo -> fim
+        if (Number.isNaN(timestampB)) return -1;
+
+        const difference = timestampA - timestampB; // ASC
+        return difference !== 0 ? difference : compareByName(projectA, projectB);
+      });
     default:
-      return [...list].sort((a, b) => a.name.localeCompare(b.name)); // alfabético
+      return [...projectList].sort(compareByName); // ordem alfabética
   }
 }
 

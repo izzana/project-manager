@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { FormInput } from "./components/FormInput/FormInput";
 import { DatePicker } from "./components/DatePicker/DatePicker";
 import { ImageUpload } from "./components/ImageUpload/ImageUpload";
@@ -24,12 +24,8 @@ function isValidISODate(s: string) {
   return !!s && !Number.isNaN(Date.parse(s));
 }
 
-export default function ProjectCreatePage({
-  isEditing,
-}: {
-  isEditing?: boolean;
-}) {
-  const { createProject, isLoading, fieldErrors } = useCreateProject();
+export default function ProjectCreatePage() {
+  const { createProject, isLoading } = useCreateProject();
   const navigate = useNavigate();
   const [formData, setFormData] = useState<ProjectData>({
     name: "",
@@ -57,6 +53,17 @@ export default function ProjectCreatePage({
     value: ProjectData[K]
   ) {
     setFormData((prev) => ({ ...prev, [field]: value }));
+
+    setErrors((prev) => {
+      const next = { ...prev };
+      delete next[field as string];
+
+      if (field === "startDate" || field === "endDate") {
+        delete next.startDate;
+        delete next.endDate;
+      }
+      return next;
+  });
   }
 
   async function onSubmit(e: React.FormEvent): Promise<void> {

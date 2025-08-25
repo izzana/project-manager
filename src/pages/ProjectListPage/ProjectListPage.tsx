@@ -54,6 +54,7 @@ export default function ProjectListPage() {
           <StyledProjectsList style={{ marginTop: 16 }}>
             {projects.map((project) => (
               <ProjectCard
+                key={project.id}
                 id={project.id}
                 name={project.name}
                 client={project.client}
