@@ -19,8 +19,8 @@ function buildQuery(params: Record<string, string | boolean | undefined>) {
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined) search.set(key, String(value));
   });
-  const str = search.toString();
-  return str ? `?${str}` : "";
+  const string = search.toString();
+  return string ? `?${string}` : "";
 }
 
 export const ProjectRepo = {

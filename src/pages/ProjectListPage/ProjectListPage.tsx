@@ -22,7 +22,6 @@ export default function ProjectListPage() {
     favoriteProject,
     removeProject,
     setOnlyFavorites,
-    setQuery,
     setOrder,
   } = useProjects();
   const navigate = useNavigate();
@@ -40,13 +39,7 @@ export default function ProjectListPage() {
               <h1>Projetos </h1>
               <span>({total})</span>
             </div>
-
             <div>
-              <input
-                placeholder="Buscar (mín. 3 caracteres)"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
               <Toggle
                 id="only-favorites"
                 checked={onlyFavorites}
@@ -66,7 +59,7 @@ export default function ProjectListPage() {
                 client={project.client}
                 startDate={project.startDate}
                 endDate={project.endDate}
-                cover={project.cover}                 // 1º card com imagem
+                cover={project.cover}
                 favorite={project.favorite}
                 onOpen={(id) => navigate(`/projects/${id}/edit`)}
                 onToggleFavorite={() => favoriteProject(project.id)}
