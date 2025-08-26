@@ -55,7 +55,7 @@ export default function ProjectListPage() {
             {projects.map((project) => (
               <ProjectCard
                 key={project.id}
-                id={project.id}
+                id={project.id || ""}
                 name={project.name}
                 client={project.client}
                 startDate={project.startDate}
@@ -63,9 +63,9 @@ export default function ProjectListPage() {
                 cover={project.cover}
                 favorite={project.favorite}
                 onOpen={(id) => navigate(`/projects/${id}/edit`)}
-                onToggleFavorite={() => favoriteProject(project.id)}
+                onToggleFavorite={() => favoriteProject(project.id || "")}
                 onEdit={(id) => navigate(`/projects/${id}/edit`)}
-                onRemove={() => removeProject(project.id)}
+                onRemove={() => removeProject(project.id || "")}
               />
             ))}
           </StyledProjectsList>
