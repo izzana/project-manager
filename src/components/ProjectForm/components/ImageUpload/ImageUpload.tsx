@@ -32,6 +32,7 @@ export function ImageUpload({
 }: ImageUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | undefined>(value);
+  console.log('')
 
   function handlePick() {
     inputRef.current?.click();

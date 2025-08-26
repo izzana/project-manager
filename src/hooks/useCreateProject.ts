@@ -1,18 +1,11 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { ProjectRepo, type Project } from "../api/projectRepo";
+import type { ICreateProject } from "../types/project";
 
-export type CreateProjectInput = {
-  name: string;
-  client: string;
-  startDate: string;
-  endDate: string;
-  cover?: string;
-};
-
-export type FieldErrors = Partial<Record<keyof CreateProjectInput, string>>;
+export type FieldErrors = Partial<Record<keyof ICreateProject, string>>;
 
 type UseCreateProjectReturn = {
-  createProject: (input: CreateProjectInput) => Promise<Project | null>;
+  createProject: (input: ICreateProject) => Promise<Project | null>;
   isLoading: boolean;
   error: string | null;
   fieldErrors: FieldErrors;
@@ -36,7 +29,7 @@ export function useCreateProject(): UseCreateProjectReturn {
     setLastCreated(null);
   }, []);
 
-  const createProject = useCallback(async (raw: CreateProjectInput) => {
+  const createProject = useCallback(async (raw: ICreateProject) => {
     // cancela requisição anterior (se existir)
     abortRef.current?.abort();
     const controller = new AbortController();
@@ -47,7 +40,7 @@ export function useCreateProject(): UseCreateProjectReturn {
     setFieldErrors({});
 
     // pequenas normalizações
-    const input: CreateProjectInput = {
+    const input: ICreateProject = {
       ...raw,
       name: raw.name.trim(),
       client: raw.client.trim(),
