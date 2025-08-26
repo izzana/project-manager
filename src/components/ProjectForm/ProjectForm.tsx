@@ -21,7 +21,6 @@ export default function ProjectForm({
   onSubmit,
   updateField,
 }: ProjectFormProps) {
-  console.log('formData', formData)
   return (
     <form onSubmit={onSubmit}>
       <div>
