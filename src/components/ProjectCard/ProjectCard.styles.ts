@@ -120,8 +120,8 @@ export const StyledMenu = styled.div`
     border-left: 1px solid #e5e7eb;
     border-top: 1px solid #e5e7eb;
     transform: rotate(45deg);
-    border-radius: 3px 0 0 0; /* deixa a ponta com curva igual ao menu */
-    z-index: -1;       /* fica abaixo da borda do menu */
+    border-radius: 3px 0 0 0;
+    z-index: -1;
   }
 `;
 export const StyledMenuItem = styled.button`
@@ -147,23 +147,6 @@ export const StyledMenuItem = styled.button`
   }
 `;
 
-export const StyledTitleOverlay = styled.div`
-  position: absolute;
-  left: 16px;
-  bottom: 12px;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-  h3 {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 800;
-  }
-  small {
-    display: block;
-    opacity: 0.9;
-  }
-`;
-
 export const StyledBody = styled.div`
   padding: 14px 16px 16px 16px;
   cursor: pointer;
@@ -184,13 +167,16 @@ export const StyledRow = styled.div`
   font-size: 14px;
   padding: 6px 0;
 `;
+
 export const StyledLabel = styled.span`
   color: #6b7280;
   font-weight: 600;
 `;
+
 export const StyledValue = styled.span`
   color: #111827;
 `;
+
 export const StyledDivider = styled.hr`
   border: 0;
   border-top: 1px solid #eee;

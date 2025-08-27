@@ -1,5 +1,6 @@
 import { AnyProjectsToShow } from "./components/AnyProjectsToShow";
 import {
+  InnerContainer,
   StyledContainer,
   StyledContainerInner,
   StyledFilters,
@@ -11,6 +12,9 @@ import { ProjectCard } from "../../components/ProjectCard/ProjectCard";
 import { useNavigate } from "react-router-dom";
 import CreateProjectButton from "../../components/CreateProjectButton/CreateProjectButton";
 import { SelectOrderMenu } from "../../components/SelectOrderMenu/SelectOrderMenu";
+import { PageHeaderWithBackButton } from "../../components/PageHeaderWithBackButton/PageHeaderWithBackButton";
+import { useSetAtom } from "jotai";
+import { searchQueryAtom } from "../../atoms/SearchQuery.atom";
 
 export default function ProjectListPage() {
   const {
@@ -29,6 +33,12 @@ export default function ProjectListPage() {
   const navigate = useNavigate();
   const showEmptyState =
     hasLoaded && !isLoading && projects.length === 0 && !onlyFavorites && !query;
+  const isSearching = query.trim().length >= 3;
+  const setQuery = useSetAtom(searchQueryAtom);
+
+  function onClickBack() {
+    setQuery("");
+  }
 
   return (
     <StyledContainer>
@@ -39,10 +49,19 @@ export default function ProjectListPage() {
       ) : (
         <div>
           <StyledFilters>
-            <div>
-              <h1>Projetos </h1>
-              <span>({total})</span>
-            </div>
+              {!isSearching ?(
+              <div>
+                <>
+                  <h1>Projetos </h1>
+                  <span>({total})</span>
+                </>
+              </div>
+               ) : (
+                <InnerContainer>
+                  <PageHeaderWithBackButton onBack={onClickBack} />
+                  <h1>Resultado da busca</h1>
+                </InnerContainer>
+               )}
             <div>
               <Toggle
                 id="only-favorites"

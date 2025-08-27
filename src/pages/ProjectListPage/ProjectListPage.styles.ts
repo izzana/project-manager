@@ -85,3 +85,9 @@ export const StyledProjectsList = styled.ul`
   gap: 16px;
   padding: 0px;
 `;
+
+export const InnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start !important;
+`;

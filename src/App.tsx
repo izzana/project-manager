@@ -7,7 +7,7 @@ export default function App() {
     <ChakraProvider>
      <AppRoot>
         <AppRoutes />
-      </AppRoot>'
+      </AppRoot>
     </ChakraProvider>
   );
 }

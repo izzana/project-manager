@@ -10,6 +10,8 @@ export const StyledContainer = styled.div`
   gap: 12px;
   position: relative;
   box-shadow: 0px 4px 4px #00000040;
+  z-index: 10;
+  position: fixed;
 `;
 
 export const StyledImage = styled.img`

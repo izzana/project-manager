@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import { ListLayout } from "../layouts/ListLayout";
 import { PlainLayout } from "../layouts/PlainLayout";
+import { Spinner } from "@chakra-ui/react";
 
 const ProjectListPage = lazy(() => import("../pages/ProjectListPage/ProjectListPage"));
 const ProjectCreatePage = lazy(() => import("../pages/ProjectCreatePage/ProjectCreatePage"));
@@ -10,7 +11,7 @@ const ProjectEditPage = lazy(() => import("../pages/ProjectEditPage/ProjectEditP
 export default function AppRoutes() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<div style={{ padding: 24 }}>carregando…</div>}>
+      <Suspense fallback={<Spinner size='xl' margin={'auto'} />}>
         <Routes>
           <Route element={<ListLayout />}>
             <Route path="/" element={<ProjectListPage />} />

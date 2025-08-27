@@ -17,7 +17,6 @@ import {
   StyledCardTitle,
   StyledLabel,
   StyledRow,
-  StyledTitleOverlay,
   StyledDivider,
   StyledValue,
 } from "./ProjectCard.styles";
@@ -139,14 +138,6 @@ export function ProjectCard({
             )}
           </StyledMenuWrapper>
         </StyledTopActions>
-
-        {/* título sobreposto apenas se houver capa */}
-        {cover && (
-          <StyledTitleOverlay>
-            <h3>{name}</h3>
-            <small>{client}</small>
-          </StyledTitleOverlay>
-        )}
       </StyledCover>
 
       <StyledBody onClick={handleCardClick}>

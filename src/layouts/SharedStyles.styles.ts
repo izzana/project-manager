@@ -10,7 +10,7 @@ export const PageContainer = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 60px;
+  margin-top: 140px;
   padding: 0 24px;
   box-sizing: border-box;
 `;

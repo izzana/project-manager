@@ -3,7 +3,7 @@ import { StyledBackButton, StyledBackIcon } from "./PageHeaderWithBackButton.sty
 export function PageHeaderWithBackButton({
   title,
   onBack,
-}: { title: string; onBack: () => void }) {
+}: { title?: string; onBack: () => void }) {
   return (
     <>
       <StyledBackButton onClick={onBack}>
@@ -13,7 +13,7 @@ export function PageHeaderWithBackButton({
         </StyledBackIcon>
         <span>Voltar</span>
       </StyledBackButton>
-      <p>{title}</p>
+      {title && <h1>{title}</h1>}
     </>
   );
 }

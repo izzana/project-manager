@@ -9,6 +9,7 @@ export const StyledContainer = styled.div`
   align-items: center;
   gap: 12px;
   position: relative;
+  z-index: 10;
 `;
 
 export const StyledImage = styled.img`

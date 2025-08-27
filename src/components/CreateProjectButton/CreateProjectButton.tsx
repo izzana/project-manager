@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { StyledButton } from "./CreateProjectButton.styles";
-import { AddCircleIcon } from "../AddCircleIcon/AddCircleIcon";
+import { FiPlusCircle } from "react-icons/fi";
 
 export default function CreateProjectButton() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function CreateProjectButton() {
   return (
     <>
       <StyledButton onClick={() => handleClick()}>
-        <AddCircleIcon />
+        <FiPlusCircle  size={24} />
         <span>Novo projeto</span>
       </StyledButton>
     </>
