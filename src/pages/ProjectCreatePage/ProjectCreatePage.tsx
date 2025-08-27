@@ -29,7 +29,7 @@ export default function ProjectCreatePage() {
 
   return (
     <StyledContainer>
-      <PageHeaderWithBackButton title="Criar projeto" onBack={handleReset} />
+      <PageHeaderWithBackButton title="Novo projeto" onBack={handleReset} />
       <ProjectForm
         disabled={hasErrors || isLoading || submitting}
         formData={formData}

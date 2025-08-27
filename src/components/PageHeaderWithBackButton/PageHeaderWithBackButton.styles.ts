@@ -21,3 +21,14 @@ export const StyledBackButton = styled.button`
     color: #695CCD;
   }
 `;
+
+export const StyledTitle = styled.h1`
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  vertical-align: middle;
+  color: #1F1283;
+  margin-bottom: 24px;
+  margin-left: 8px;
+  margin-top: 8px;
+`;

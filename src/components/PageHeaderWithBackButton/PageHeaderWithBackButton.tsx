@@ -1,4 +1,4 @@
-import { StyledBackButton, StyledBackIcon } from "./PageHeaderWithBackButton.styles";
+import { StyledBackButton, StyledBackIcon, StyledTitle } from "./PageHeaderWithBackButton.styles";
 
 export function PageHeaderWithBackButton({
   title,
@@ -13,7 +13,7 @@ export function PageHeaderWithBackButton({
         </StyledBackIcon>
         <span>Voltar</span>
       </StyledBackButton>
-      {title && <h1>{title}</h1>}
+      {title && <StyledTitle>{title}</StyledTitle>}
     </>
   );
 }

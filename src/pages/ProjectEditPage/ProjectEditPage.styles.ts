@@ -6,17 +6,6 @@ export const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  & > p {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 100%;
-    vertical-align: middle;
-    color: #1F1283;
-    margin-bottom: 24px;
-    margin-left: 8px;
-    margin-top: 8px;
-  }
-
   & > form {
     display: flex;
     flex-direction: column;
