@@ -5,6 +5,7 @@ import { searchQueryAtom } from "../atoms/SearchQuery.atom";
 
 type UseProjectsReturn = {
   projects: Project[];
+  hasLoaded: boolean;
   isLoading: boolean;
   total: number;
   query: string;
@@ -27,6 +28,7 @@ export function useProjects(): UseProjectsReturn {
   const [onlyFavorites, setOnlyFavorites] = useState(false);
   const [order, setOrder] = useState<Order>("alpha");
   const [isLoading, setIsLoading] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
   
 
   const fetchProjects = async () => {
@@ -43,6 +45,7 @@ export function useProjects(): UseProjectsReturn {
       console.error(error);
     } finally {
       setIsLoading(false);
+      setHasLoaded(true);
     }
   };
 
@@ -71,6 +74,7 @@ export function useProjects(): UseProjectsReturn {
 
   return useMemo(
   () => ({
+    hasLoaded,
     projects,
     total,
     query,
@@ -85,6 +89,6 @@ export function useProjects(): UseProjectsReturn {
     setQuery,
     setOrder,
   }),
-  [isLoading, onlyFavorites, order, projects, query, total]
+  [hasLoaded, isLoading, onlyFavorites, order, projects, query, total]
 );
 }

@@ -14,6 +14,8 @@ import { SelectOrderMenu } from "../../components/SelectOrderMenu/SelectOrderMen
 
 export default function ProjectListPage() {
   const {
+    hasLoaded,
+    isLoading,
     projects,
     total,
     query,
@@ -25,10 +27,12 @@ export default function ProjectListPage() {
     setOrder,
   } = useProjects();
   const navigate = useNavigate();
+  const showEmptyState =
+    hasLoaded && !isLoading && projects.length === 0 && !onlyFavorites && !query;
 
   return (
     <StyledContainer>
-      {projects.length === 0 && !onlyFavorites && !query ? (
+      {showEmptyState ? (
         <StyledContainerInner>
           <AnyProjectsToShow />
         </StyledContainerInner>
