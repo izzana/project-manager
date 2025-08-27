@@ -18,7 +18,7 @@ type ImageUploadProps = {
   name: string;
   value?: string; // base64 ou url
   onChange: (file: File | null, previewUrl?: string) => void;
-  titleOverlay?: string; // "Project 01"
+  titleOverlay?: string;
   subtitleOverlay?: string;
 };
 

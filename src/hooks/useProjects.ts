@@ -23,8 +23,7 @@ type UseProjectsReturn = {
 export function useProjects(): UseProjectsReturn {
   const [projects, setProjects] = useState<Project[]>([]);
   const [total, setTotal] = useState(0);
-  const [query, setQuery] = useAtom(searchQueryAtom); //é pra o componente de search, usar atoms
-  //passar filtros para um único useState
+  const [query, setQuery] = useAtom(searchQueryAtom);
   const [onlyFavorites, setOnlyFavorites] = useState(false);
   const [order, setOrder] = useState<Order>("alpha");
   const [isLoading, setIsLoading] = useState(false);

@@ -39,7 +39,7 @@ export function useCreateProject(): UseCreateProjectReturn {
     setError(null);
     setFieldErrors({});
 
-    // pequenas normalizações
+    // normalizações
     const input: ICreateProject = {
       ...raw,
       name: raw.name.trim(),
@@ -54,7 +54,6 @@ export function useCreateProject(): UseCreateProjectReturn {
       setLastCreated(created);
       return created;
     } catch (error: any) {
-      // nosso repo lança { validation: { field: "msg" } } para 422
       if (error?.validation) {
         setFieldErrors(error.validation as FieldErrors);
       } else if (error?.name === "AbortError") {

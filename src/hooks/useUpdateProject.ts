@@ -1,4 +1,3 @@
-// src/hooks/useUpdateProject.ts
 import { useCallback, useMemo, useRef, useState } from "react";
 import { ProjectRepo, type Project } from "../api/projectRepo";
 import type { ProjectData } from "../types/project";

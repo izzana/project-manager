@@ -121,7 +121,9 @@ export function SearchWithHistory({
  */
   useEffect(() => {
     const term = query.trim();
-    if (term.length < minLength) return;
+    if (term.length < minLength) {
+      return;
+    };
 
     if (term === lastSavedRef.current) {
       onSearchItem(term);

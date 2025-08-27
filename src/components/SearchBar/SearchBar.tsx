@@ -1,4 +1,3 @@
-// src/components/SearchBar/SearchBar.tsx
 import { useRef, useState } from "react";
 import { Button, useOutsideClick } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
