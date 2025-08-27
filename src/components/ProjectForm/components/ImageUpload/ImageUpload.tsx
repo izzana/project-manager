@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   StyledDropzone,
   StyledHiddenInput,
@@ -32,7 +32,6 @@ export function ImageUpload({
 }: ImageUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | undefined>(value);
-  console.log('')
 
   function handlePick() {
     inputRef.current?.click();
@@ -54,9 +53,18 @@ export function ImageUpload({
   function clearImage(e: React.MouseEvent) {
     e.stopPropagation();
     setPreview(undefined);
-    if (inputRef.current) inputRef.current.value = "";
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
     onChange(null);
   }
+
+  useEffect(() => {
+    setPreview(value);
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  }, [value]);
 
   return (
     <Wrapper>
