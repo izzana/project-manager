@@ -22,9 +22,9 @@ import {
 } from "./ProjectCard.styles";
 import { DeleteProjectModal } from "../DeleteProjectModal/DeleteProjectModal";
 import { useOutsideClick } from "@chakra-ui/react";
-import NameWithHighlight from "../TextHighlight/TextHighlight";
 import { useAtomValue } from "jotai";
 import { searchQueryAtom } from "../../atoms/SearchQuery.atom";
+import NameWithHighlight from "../TextHighlight/TextHighlight";
 
 export type ProjectCardProps = {
   id: string;
