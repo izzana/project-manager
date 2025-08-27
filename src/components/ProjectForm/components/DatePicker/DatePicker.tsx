@@ -4,13 +4,14 @@ import { CalendarIcon, ErrorMessage, FieldWrapper, StyledInput } from "./DatePic
 type DatePickerProps = {
   label: string;
   name: string;
-  value: string; // ISO "YYYY-MM-DD"
+  value: string;
   onChange: (value: string) => void;
   required?: boolean;
   error?: string;
-  min?: string; // ISO
-  max?: string; // ISO
+  min?: string;
+  max?: string;
   disabled?: boolean;
+  icon?: React.ReactNode;
 };
 
 export function DatePicker({
@@ -23,6 +24,7 @@ export function DatePicker({
   min,
   max,
   disabled,
+  icon,
 }: DatePickerProps) {
   return (
     <Wrapper aria-live="polite">
@@ -44,13 +46,8 @@ export function DatePicker({
           disabled={disabled}
           $hasError={!!error}
         />
-        <CalendarIcon
-          viewBox="0 0 24 24"
-          aria-hidden="true"
-          focusable="false"
-          $hasError={!!error}
-        >
-          <path d="M7 2a1 1 0 0 1 1 1v1h8V3a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1V3a1 1 0 1 1 2 0v1zm13 6H4v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8zM5 7h14V6H5z"/>
+        <CalendarIcon $hasError={!!error}>
+          {icon}
         </CalendarIcon>
       </FieldWrapper>
 
@@ -60,5 +57,3 @@ export function DatePicker({
     </Wrapper>
   );
 }
-
-/* ===== styles ===== */

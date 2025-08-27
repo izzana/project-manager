@@ -83,7 +83,7 @@ export const StyledMenuWrapper = styled.div`
 export const StyledKebabButton = styled.button<{ $open: boolean }>`
   width: 32px;
   height: 32px;
-  border-radius: 999px;
+  border-radius: 100%;
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(0, 0, 0, 0.08);
   display: grid;
@@ -95,13 +95,6 @@ export const StyledKebabButton = styled.button<{ $open: boolean }>`
   }
 
   ${(p) => p.$open && `box-shadow: 0 0 0 2px rgba(110,99,205,.25);`}
-`;
-
-export const StyledKebabIcon = styled.svg`
-  width: 16px;
-  height: 16px;
-  fill: #6b6b6b;
-  transform: rotate(90deg);
 `;
 
 export const StyledMenu = styled.div`
@@ -149,18 +142,10 @@ export const StyledMenuItem = styled.button`
     color: #695CCD;
   }
 
-  svg {
-    width: 16px;
-    height: 16px;
-    fill: #695ccd;
-  }
-
   &:not(:last-child) {
     border-bottom: 1px solid #eee;
   }
 `;
-export const StyledPencilIcon = styled.svg``;
-export const StyledTrashIcon = styled.svg``;
 
 export const StyledTitleOverlay = styled.div`
   position: absolute;

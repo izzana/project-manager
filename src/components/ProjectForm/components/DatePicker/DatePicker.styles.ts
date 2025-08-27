@@ -41,13 +41,17 @@ export const StyledInput = styled.input<{ $hasError: boolean }>`
   -webkit-appearance: none;
 
   width: 100%;
-  padding: 0.3rem 2.25rem 0.3rem 0.8rem; /* espaço à direita pro ícone */
-  border: 0;
+  height: 100%;
+  padding: 9px 16px;
+  border: none;
   background: transparent;
   border-radius: 6px;
   font-size: 1rem;
   color: ;
   color: ${({ $hasError }) => ($hasError ? "#c53030" : "#111")};
+
+  appearance: none;
+  -webkit-appearance: none;
 
   &:disabled {
     background: #f6f6f6;
@@ -55,11 +59,14 @@ export const StyledInput = styled.input<{ $hasError: boolean }>`
     cursor: not-allowed;
   }
 
-  /* tira o ícone default do Chrome para manter o nosso */
   &::-webkit-calendar-picker-indicator {
-    opacity: 0;
-    width: 1.5rem;
-    height: 1.5rem;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    opacity: 0;            /* invisível, mas clicável */
     cursor: pointer;
   }
 `;
@@ -67,12 +74,11 @@ export const StyledInput = styled.input<{ $hasError: boolean }>`
 export const CalendarIcon = styled.svg<{ $hasError: boolean }>`
   position: absolute;
   right: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 18px;
-  height: 18px;
-  fill: ${({ $hasError }) => ($hasError ? "#c53030" : "#6b6b6b")};
-  pointer-events: none; /* clique continua abrindo o datepicker */
+  top: 10px;
+  width: 24px;
+  height: 24px;
+  color: ${({ $hasError }) => ($hasError ? "#c53030" : "#717171")};
+  pointer-events: none;
 `;
 
 export const ErrorMessage = styled.small`
