@@ -42,7 +42,7 @@ Install dependencies:
 ```bash
 npm install
 ```
-# or
+### or
 
 ```bash
 yarn install
@@ -53,7 +53,7 @@ Run in development mode:
 npm run dev
 ```
 
-# or
+### or
 
 ```bash
 yarn dev
@@ -104,7 +104,7 @@ Instale as dependências:
 ```bash
 npm install
 ```
-# ou
+### ou
 
 ```bash
 yarn install
@@ -115,7 +115,7 @@ Execute em ambiente de desenvolvimento:
 npm run dev
 ```
 
-# ou
+### ou
 
 ```bash
 yarn dev
