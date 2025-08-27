@@ -1,69 +1,122 @@
-# React + TypeScript + Vite
+# 📌 Project Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend application built with **React + TypeScript** that allows you to manage projects easily: create, edit, delete, favorite, and search.  
+Data is stored in **localStorage**, and the backend is simulated with **MSW**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- Project listing
+- Create, edit and delete
+- Favorite / unfavorite
+- Sorting:
+  - Alphabetical
+  - Most recently started
+  - Closest to due date
+- Search (min. 3 characters)
+- History of the last 5 searches
+- *Highlight* on matched search terms
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Styled Components](https://styled-components.com/)
+- [MSW](https://mswjs.io/) (Mock Service Worker)
+- [Jotai](https://jotai.org/)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🚀 Getting Started
+
+Clone the repository:
+```bash
+git clone https://github.com/your-username/project-manager.git
+cd project-manager
+```
+Install dependencies:
+```bash
+npm install
+```
+# or
+
+```bash
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Run in development mode:
+```bash
+npm run dev
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# or
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+yarn dev
+```
+
+# 📌 Gerenciador de Projetos
+
+Aplicação frontend desenvolvida com **React + TypeScript**, que permite gerenciar projetos de forma simples: criar, editar, remover, favoritar e buscar.  
+Os dados são armazenados no **localStorage**, e o backend é simulado com **MSW**.
+
+---
+
+## ✨ Funcionalidades
+
+- Listagem de projetos
+- Criação, edição e exclusão
+- Favoritar / desfavoritar
+- Ordenação:
+  - Alfabética
+  - Mais recentes (início)
+  - Mais próximos da finalização
+- Busca (mín. 3 caracteres)
+- Histórico das últimas 5 buscas
+- *Highlight* do texto buscado
+
+---
+
+## 🛠️ Tecnologias
+
+- [React](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Styled Components](https://styled-components.com/)
+- [MSW](https://mswjs.io/) (Mock Service Worker)
+- [Jotai](https://jotai.org/)
+
+---
+
+## 🚀 Como rodar
+
+Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/project-manager.git
+cd project-manager
+``` 
+
+Instale as dependências:
+```bash
+npm install
+```
+# ou
+
+```bash
+yarn install
+```
+
+Execute em ambiente de desenvolvimento:
+```bash
+npm run dev
+```
+
+# ou
+
+```bash
+yarn dev
 ```
