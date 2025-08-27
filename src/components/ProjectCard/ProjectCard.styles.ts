@@ -152,13 +152,6 @@ export const StyledBody = styled.div`
   cursor: pointer;
 `;
 
-export const StyledCardTitle = styled.h4`
-  margin: 0 0 6px 0;
-  font-size: 18px;
-  font-weight: 800;
-  color: #1f2937;
-`;
-
 export const StyledRow = styled.div`
   display: flex;
   align-items: center;
@@ -181,4 +174,11 @@ export const StyledDivider = styled.hr`
   border: 0;
   border-top: 1px solid #eee;
   margin: 8px 0;
+`;
+
+export const CardTitle = styled.h3`
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1F1283;
 `;

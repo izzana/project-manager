@@ -14,14 +14,17 @@ import {
   StyledMenu,
   StyledMenuItem,
   StyledBody,
-  StyledCardTitle,
   StyledLabel,
   StyledRow,
   StyledDivider,
   StyledValue,
+  CardTitle,
 } from "./ProjectCard.styles";
 import { DeleteProjectModal } from "../DeleteProjectModal/DeleteProjectModal";
 import { useOutsideClick } from "@chakra-ui/react";
+import NameWithHighlight from "../TextHighlight/TextHighlight";
+import { useAtomValue } from "jotai";
+import { searchQueryAtom } from "../../atoms/SearchQuery.atom";
 
 export type ProjectCardProps = {
   id: string;
@@ -53,6 +56,7 @@ export function ProjectCard({
   const [menuOpen, setMenuOpen] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const query = useAtomValue(searchQueryAtom);
 
   useOutsideClick({ ref: containerRef, handler: () => setMenuOpen(false) });
 
@@ -141,7 +145,9 @@ export function ProjectCard({
       </StyledCover>
 
       <StyledBody onClick={handleCardClick}>
-        <StyledCardTitle>{name}</StyledCardTitle>
+        <CardTitle>
+          <NameWithHighlight text={name} query={query} />
+        </CardTitle>
         <StyledRow>
           <StyledLabel>Cliente:</StyledLabel>
           <StyledValue>{client}</StyledValue>
