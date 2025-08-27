@@ -1,3 +1,4 @@
+import { VscHistory } from "react-icons/vsc";
 import {
   Box,
   Flex,
@@ -9,16 +10,16 @@ import {
   ListItem,
   Text,
 } from "@chakra-ui/react";
-import { SearchIcon, CloseIcon, TimeIcon } from "@chakra-ui/icons";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useAtom } from "jotai";
 import { searchQueryAtom } from "../../atoms/SearchQuery.atom";
 
 type Props = {
-  storageKey?: string; // chave do localStorage (default: "search_history")
+  storageKey?: string;
   placeholder?: string;
-  minLength?: number; // mínimo de caracteres para pesquisar (default: 3)
-  maxItems?: number; // máximo guardado (default: 5)
+  minLength?: number;
+  maxItems?: number;
 };
 
 export function SearchWithHistory({
@@ -29,16 +30,7 @@ export function SearchWithHistory({
 }: Props) {
   const [query, setQuery] = useAtom(searchQueryAtom);
   const [history, setHistory] = useState<string[]>([]);
-
-  // carregar histórico
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(storageKey);
-      if (raw) setHistory(JSON.parse(raw));
-    } catch {
-      setHistory([]);
-    }
-  }, [storageKey]);
+  const lastSavedRef = useRef<string>("");
 
   // salvar histórico
   const persist = useCallback(
@@ -53,7 +45,7 @@ export function SearchWithHistory({
     [storageKey]
   );
 
-  // adicionar ao histórico (dedupe + limitar)
+  // adicionar ao histórico
   const pushHistory = useCallback(
     (searchTerm: string) => {
       const currentTerm = searchTerm.trim();
@@ -98,6 +90,52 @@ export function SearchWithHistory({
         : "",
     [query, minLength]
   );
+
+    /**
+     * useEffect responsible for loading the saved history from `localStorage`
+     * when the component mounts or when the key (`storageKey`) changes.
+     *
+     * - Retrieves the stored string from `localStorage` using the provided key.
+     * - If it exists, tries to parse it as JSON and updates the `history` state.
+     * - If an error occurs (e.g., invalid JSON or storage unavailable),
+     *   initializes the state with an empty array.
+   */
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(storageKey);
+      if (raw) setHistory(JSON.parse(raw));
+    } catch {
+      setHistory([]);
+    }
+  }, [storageKey]);
+
+  /**
+   * useEffect responsible for handling the search term with a debounce mechanism.
+   *
+   * - Trims the current `query` and checks if it meets the minimum length (`minLength`).
+   * - If the term is the same as the last saved one, it simply triggers `onSearchItem`.
+   * - Otherwise, starts a 500ms timer:
+   *    - After the delay, adds the term to history (`pushHistory`),
+   *      updates `lastSavedRef`, and calls `onSearchItem`.
+   * - Cleans up the timeout on component unmount or when dependencies change.
+ */
+  useEffect(() => {
+    const term = query.trim();
+    if (term.length < minLength) return;
+
+    if (term === lastSavedRef.current) {
+      onSearchItem(term);
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      pushHistory(term);
+      lastSavedRef.current = term;
+      onSearchItem(term);
+    }, 500);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [query, minLength, pushHistory, onSearchItem]);
 
   return (
     <Box
@@ -148,7 +186,7 @@ export function SearchWithHistory({
                 px="3"
                 py="3"
                 borderBottom="1px solid"
-                borderColor="#695CCD"
+                borderColor="#F4F2FF"
                 _hover={{ bg: "gray.50", cursor: "pointer" }}
               >
                 <Flex align="center" justify="space-between" gap="2">
@@ -160,8 +198,8 @@ export function SearchWithHistory({
                       onSearchItem(item);
                     }}
                   >
-                    <TimeIcon color="gray.500" />
-                    <Text>{item}</Text>
+                    <VscHistory color="#717171" size={16} />
+                    <Text color="#717171">{item}</Text>
                   </Flex>
                   <IconButton
                     aria-label="Remover"
