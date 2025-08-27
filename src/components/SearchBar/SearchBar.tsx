@@ -1,39 +1,34 @@
-import { Button, SearchIcon, useOutsideClick } from "@chakra-ui/icons";
-import { SearchWithHistory } from "../SearchBarWithHistory/SearchBarWithHistory";
-import { StyledContainer, StyledImage } from "./SearchBar.styles";
+// src/components/SearchBar/SearchBar.tsx
 import { useRef, useState } from "react";
+import { Button, useOutsideClick } from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
+import { SearchWithHistory } from "../SearchWithHistory/SearchWithHistory";
 
 export default function SearchBar() {
-  const [isOpenSearch, setIsOpenSearch] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  const currentRef = useRef<HTMLDivElement>(null);
-   useOutsideClick({
-    ref: currentRef,
-    handler: () => setIsOpenSearch(false),
-  });
-
-  function onButtonSearchClick () {
-    setIsOpenSearch(!isOpenSearch);
-  }
+  useOutsideClick({ ref: containerRef, handler: () => setIsOpen(false) });
 
   return (
-    <StyledContainer>
-      {!isOpenSearch ? (
-        <>
-          <div/>
-          <StyledImage src="/logo.png" alt="" />
-          <Button color="white" variant="unstyled" paddingRight={10} onClick={onButtonSearchClick}>
-            <SearchIcon color="gray.400" />
-          </Button>
-        </>
+    <div ref={containerRef}>
+      {!isOpen ? (
+        <Button
+          color="white"
+          variant="unstyled"
+          pr={4}
+          onClick={() => setIsOpen(true)}
+          aria-label="Abrir busca"
+        >
+          <SearchIcon color="gray.300" />
+        </Button>
       ) : (
         <SearchWithHistory
-          ref={currentRef}
           storageKey="pm:lastSearches"
           minLength={3}
           maxItems={5}
         />
-      ) }
-    </StyledContainer>
+      )}
+    </div>
   );
 }

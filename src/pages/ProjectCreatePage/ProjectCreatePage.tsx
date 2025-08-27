@@ -20,7 +20,6 @@ export default function ProjectCreatePage() {
     },
   });
   const navigate = useNavigate();
-
   const hasErrors = Object.keys(errors).length > 0;
 
   function handleReset() {
